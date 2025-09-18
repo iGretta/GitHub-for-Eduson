@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Простая кнопка</title>
+    <title>Кнопка с ссылкой</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .link-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .link-button:hover {
+            background-color: #45a049;
+        }
+        .link-button:active {
+            transform: translateY(2px);
+        }
+    </style>
 </head>
 <body>
-    <button type="button">Нажми меня</button>
+    <div class="button-container">
+        <a href="https://max.ru/u/f9LHodD0cOKXiEntRuYsb0Wiu7ONEP_zjjPH8IWDYw6JdwZsKAIlbydcJ_A" class="link-button">
+            Перейти на Max.ru
+        </a>
+    </div>
 </body>
 </html>
