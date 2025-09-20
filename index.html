@@ -54,6 +54,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
         }
         .link-button:hover {
             transform: translateY(-3px);
@@ -71,6 +74,14 @@
             background-color: #8e44ad;
             box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
         }
+        .button-tertiary {
+            background-color: #27ae60;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+        .button-tertiary:hover {
+            background-color: #219653;
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        }
         .button-description {
             font-size: 14px;
             color: #95a5a6;
@@ -81,24 +92,59 @@
 </head>
 <body>
     <div class="container">
-        <h1>Добро пожаловать на Max.ru</h1>
-        <p>Выберите, куда вы хотите перейти на сайте Max.ru</p>
+        <h1>Кнопочки для Максуты</h1>
         
         <div class="button-container">
             <div>
                 <a href="https://max.ru/u/f9LHodD0cOKXiEntRuYsb0Wiu7ONEP_zjjPH8IWDYw6JdwZsKAIlbydcJ_A" class="link-button">
                     Мой MAX
                 </a>
-                <span class="button-description">Прямой переход на указанную страницу</span>
             </div>
             
             <div>
                 <a href="https://max.ru" class="link-button button-secondary">
                     Главная страница
                 </a>
-                <span class="button-description">Переход на главную страницу Max.ru</span>
+            </div>
+            
+            <div>
+                <a href="#" class="link-button button-tertiary" id="shareButton">
+                    Поделиться
+                </a>
             </div>
         </div>
     </div>
+
+    <script>
+        const shareButton = document.getElementById('shareButton');
+        
+        // Обработчик кнопки "Поделиться"
+        shareButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Текущий URL
+            const currentUrl = window.location.href;
+            
+            if (navigator.share) {
+                // Используем Web Share API если доступно
+                navigator.share({
+                    title: 'Max.ru',
+                    text: 'Посмотрите сайт Max.ru',
+                    url: 'https://max.ru'
+                }).then(() => {
+                    console.log('Успешный!');
+                }).catch(err => {
+                    console.log('Ошибка:', err);
+                });
+            } else {
+                // Fallback: копируем ссылку в буфер обмена
+                navigator.clipboard.writeText('https://max.ru').then(() => {
+                    alert('Ссылка скопирована в буфер обмена!');
+                }).catch(err => {
+                    alert('Скопируйте ссылку: https://max.ru');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
